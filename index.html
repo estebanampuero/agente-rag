@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Interactiva de Flujos de n8n</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+            width: 90%;
+            max-width: 1100px;
+        }
+        .workflow-container {
+            position: relative; /* Clave para posicionar las zonas interactivas */
+            width: 90%;
+            max-width: 1100px;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .workflow-container img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .node-area {
+            position: absolute;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .node-area:hover {
+            background-color: rgba(0, 255, 255, 0.2);
+            box-shadow: inset 0 0 0 2px cyan;
+        }
+        #tooltip {
+            position: fixed;
+            display: none;
+            padding: 15px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            color: #e0e0e0;
+            z-index: 1000;
+            max-width: 350px;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        #tooltip h3 { margin: 0 0 10px 0; color: #00ffff; font-size: 1.1em; }
+        #tooltip p { margin: 0; font-size: 0.95em; }
+
+        /* --- Coordenadas de Zonas Interactivas --- */
+        /* Formato: top, left, width, height en porcentajes */
+
+        /* Workflow 1: Chatbot */
+        #chatbot-slack-trigger { top: 38%; left: 4%; width: 14%; height: 26%; }
+        #chatbot-ai-agent { top: 38%; left: 30%; width: 23%; height: 26%; }
+        #chatbot-send-message { top: 38%; left: 78%; width: 17%; height: 26%; }
+        #chatbot-openai-model { top: 73%; left: 16%; width: 18%; height: 20%; }
+        #chatbot-simple-memory { top: 73%; left: 38%; width: 18%; height: 20%; }
+        #chatbot-pinecone-tool { top: 60%; left: 58%; width: 24%; height: 20%; }
+        #chatbot-embeddings-tool { top: 83%; left: 74%; width: 18%; height: 16%; }
+
+        /* Workflow 2: Carga de Archivos */
+        #ingest-drive-trigger { top: 38%; left: 4%; width: 17%; height: 28%; }
+        #ingest-drive-download { top: 38%; left: 24%; width: 17%; height: 28%; }
+        #ingest-pinecone { top: 38%; left: 45%; width: 23%; height: 28%; }
+        #ingest-embeddings { top: 68%; left: 35%; width: 18%; height: 24%; }
+        #ingest-data-loader { top: 68%; left: 58%; width: 18%; height: 24%; }
+        #ingest-text-splitter { top: 82%; left: 74%; width: 20%; height: 17%; }
+
+    </style>
+</head>
+<body>
+
+    <h1>Presentación Interactiva de Flujos de n8n</h1>
+    <div id="tooltip">
+        <h3 id="tooltip-title"></h3>
+        <p id="tooltip-info"></p>
+    </div>
+
+    <!-- ===== AUTOMATIZACIÓN 1: AGENTE DE CHAT INTELIGENTE ===== -->
+    <h2>Automatización 1: Agente de Chat Inteligente con Slack</h2>
+    <div class="workflow-container">
+        <img src="URL_DE_TU_IMAGEN_CHATBOT.png" alt="Flujo de trabajo del Chatbot">
+        
+        <!-- Zonas Interactivas (Divs invisibles sobre la imagen) -->
+        <div class="node-area" id="chatbot-slack-trigger" data-title="Slack Trigger" data-info="Este es el punto de partida. Se activa instantáneamente cada vez que un usuario envía un mensaje directo al bot en Slack. Captura el texto del mensaje y la información del usuario para iniciar la conversación."></div>
+        <div class="node-area" id="chatbot-ai-agent" data-title="AI Agent" data-info="Es el cerebro del bot. Recibe el texto del usuario y orquesta la respuesta. Utiliza las 'herramientas' y el 'modelo' conectados a él para decidir la mejor acción."></div>
+        <div class="node-area" id="chatbot-openai-model" data-title="OpenAI Chat Model" data-info="Proporciona el modelo de lenguaje (como GPT-4o). El 'AI Agent' le envía el prompt y este nodo devuelve la respuesta en lenguaje natural. Es el responsable del razonamiento."></div>
+        <div class="node-area" id="chatbot-simple-memory" data-title="Simple Memory" data-info="Almacena el historial de la conversación. Permite que el bot recuerde los mensajes anteriores para mantener el contexto."></div>
+        <div class="node-area" id="chatbot-send-message" data-title="Send a message" data-info="Toma la respuesta final generada por el 'AI Agent' y la publica de vuelta en el chat de Slack, completando el ciclo de la conversación."></div>
+        <div class="node-area" id="chatbot-pinecone-tool" data-title="Pinecone Vector Store (Herramienta)" data-info="Funciona como una 'herramienta' de búsqueda para el agente. Cuando necesita información específica para responder, consulta esta base de datos para encontrar los documentos más relevantes a la pregunta."></div>
+        <div class="node-area" id="chatbot-embeddings-tool" data-title="Embeddings OpenAI (Herramienta)" data-info="Convierte la pregunta del usuario en un vector numérico. Este vector es usado por Pinecone para buscar vectores similares en la base de datos, encontrando así la información más relevante."></div>
+    </div>
+
+    <!-- ===== AUTOMATIZACIÓN 2: CARGA Y PROCESAMIENTO DE ARCHIVOS ===== -->
+    <h2>Automatización 2: Carga y Procesamiento de Archivos para la Base de Conocimiento</h2>
+    <div class="workflow-container">
+        <img src="URL_DE_TU_IMAGEN_CARGA_DE_ARCHIVOS.png" alt="Flujo de trabajo de carga de archivos">
+        
+        <!-- Zonas Interactivas -->
+        <div class="node-area" id="ingest-drive-trigger" data-title="Google Drive Trigger" data-info="Este flujo se inicia automáticamente cada vez que se sube un nuevo archivo a una carpeta específica en Google Drive. Es el disparador que alimenta la base de conocimiento del bot."></div>
+        <div class="node-area" id="ingest-drive-download" data-title="Google Drive (Download)" data-info="Una vez que el trigger detecta un nuevo archivo, este nodo se encarga de descargarlo para que su contenido pueda ser procesado."></div>
+        <div class="node-area" id="ingest-pinecone" data-title="Pinecone Vector Store" data-info="Este es el destino final. Recibe los fragmentos de texto ya convertidos en vectores ('embeddings') y los almacena en Pinecone, listos para ser consultados por el bot."></div>
+        <div class="node-area" id="ingest-embeddings" data-title="Embeddings OpenAI" data-info="Toma los fragmentos de texto (chunks) y los convierte en vectores numéricos ('embeddings'). Cada vector representa el significado semántico del texto."></div>
+        <div class="node-area" id="ingest-data-loader" data-title="Default Data Loader" data-info="Este nodo toma el archivo descargado (PDF, .txt, etc.) y extrae todo el texto plano de su interior, preparándolo para ser dividido."></div>
+        <div class="node-area" id="ingest-text-splitter" data-title="Recursive Character Text Splitter" data-info="Divide el texto extraído en fragmentos más pequeños y manejables (chunks) de manera inteligente, tratando de mantener el contexto."></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tooltips = document.querySelectorAll('.node-area');
+            const tooltipElement = document.getElementById('tooltip');
+            const tooltipTitle = document.getElementById('tooltip-title');
+            const tooltipInfo = document.getElementById('tooltip-info');
+
+            tooltips.forEach(node => {
+                node.addEventListener('mouseover', () => {
+                    tooltipTitle.innerText = node.getAttribute('data-title');
+                    tooltipInfo.innerText = node.getAttribute('data-info');
+                    tooltipElement.style.display = 'block';
+                });
+
+                node.addEventListener('mousemove', (e) => {
+                    tooltipElement.style.left = e.pageX + 15 + 'px';
+                    tooltipElement.style.top = e.pageY + 15 + 'px';
+                });
+
+                node.addEventListener('mouseout', () => {
+                    tooltipElement.style.display = 'none';
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
