@@ -220,22 +220,19 @@
             </section>
 
             <!-- Workflow 2: Asistente Inteligente -->
-            <section class="workflow-section fade-in-section">
-                 <div class="workflow-header">
-                    <p class="subtitle">Fase 2: Interacción Inteligente</p>
-                    <h2>Un Asistente Experto para Cada Profesional</h2>
+            <div class="chat-simulation">
+                    <h4>Demostración en Vivo: Consulta de Protocolo</h4>
+                    <div id="user-q1" class="chat-bubble user-message">Paciente en urgencias con sospecha de sepsis. ¿Cuáles son los pasos iniciales del protocolo "Código Sepsis"?</div>
+                    <div id="bot-think1" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div id="bot-a1" class="chat-bubble bot-response"><strong>Protocolo "Código Sepsis" - Primera Hora:</strong><ul><li><strong>1. Medir lactato sérico.</strong> Repetir si > 2 mmol/L.</li><li><strong>2. Obtener hemocultivos</strong> antes de administrar antibióticos.</li><li><strong>3. Administrar antibióticos</strong> de amplio espectro.</li><li><strong>4. Iniciar fluidos</strong> (30 mL/kg de cristaloides) para hipotensión.</li></ul>¿Necesitas los criterios de activación del código?</div>
+                    
+                    <div id="user-q2" class="chat-bubble user-message">Sí, recuérdame los criterios qSOFA.</div>
+                    <div id="bot-think2" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div id="bot-a2" class="chat-bubble bot-response"><strong>Claro. Criterios qSOFA (Quick SOFA):</strong><ul><li><strong>Frecuencia respiratoria:</strong> ≥ 22/min.</li><li><strong>Alteración del estado mental:</strong> Glasgow < 15.</li><li><strong>Presión arterial sistólica:</strong> ≤ 100 mmHg.</li></ul>Se considera positivo con 2 o más puntos. ¿Algo más del protocolo?</div>
                 </div>
-                <div class="workflow-content">
-                    <div class="workflow-image"><img src="flujo2.png" alt="Diagrama del asistente de IA en Slack"></div>
-                    <div class="workflow-explanation">
-                        <h3>¿Cómo funciona?</h3>
-                        <ul class="step-list">
-                            <li class="step-item"><div class="step-icon">1</div><div class="step-description"><h4>Consulta del Usuario</h4><p>Un profesional escribe una pregunta en Slack, de forma natural y directa.</p></div></li>
-                            <li class="step-item"><div class="step-icon">2</div><div class="step-description"><h4>Búsqueda Semántica</h4><p>El Agente de IA busca los fragmentos más relevantes, entendiendo la intención de la pregunta.</p></div></li>
-                            <li class="step-item"><div class="step-icon">3</div><div class="step-description"><h4>Respuesta Inteligente</h4><p>Un modelo de lenguaje avanzado sintetiza la información y genera una respuesta precisa y clara.</p></div></li>
-                        </ul>
-                    </div>
-                </div>
+            </section>
+        </main>
+    </div>
                 
                 <!-- DEMO INTERACTIVA EXTENDIDA -->
                 <div class="chat-simulation">
