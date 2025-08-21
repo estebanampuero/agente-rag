@@ -16,7 +16,8 @@
             --subtle-text: #6c757d; /* Medium grey for descriptions */
             --accent-blue: #007aff;
             --accent-green: #34c759;
-            --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --soft-shadow: 0 8px Gist
+30px rgba(0, 0, 0, 0.06);
         }
 
         * { box-sizing: border-box; }
@@ -137,10 +138,11 @@
         }
         
         .chat-bubble {
-            max-width: 80%; padding: 12px 18px;
+            max-width: 85%; padding: 12px 18px;
             border-radius: 20px; margin-bottom: 15px;
             opacity: 0; transform: translateY(20px);
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            line-height: 1.5;
         }
 
         .chat-bubble.visible { opacity: 1; transform: translateY(0); }
@@ -168,8 +170,9 @@
             border-bottom-left-radius: 4px;
         }
 
-        .bot-response strong { color: var(--accent-green); }
+        .bot-response strong { color: var(--accent-blue); }
         .bot-response ul { padding-left: 20px; margin: 10px 0 0 0; color: var(--subtle-text); }
+        .bot-response li { margin-bottom: 5px; }
         
         /* -- ANIMATIONS -- */
         .fade-in-section {
@@ -194,8 +197,8 @@
 
     <div class="container">
         <header>
-            <h1>Innovación y Claridad: IA en el Hospital de Puerto Montt</h1>
-            <p>Una iniciativa del Comité de IA del Hospital Puerto Montt para transformar y potenciarel acceso a la información.</p>
+            <h1>Innovación y Claridad: IA en el Laboratorio Clínico</h1>
+            <p>Una iniciativa del Comité de IA del Hospital Puerto Montt para transformar el acceso a la información y potenciar la precisión diagnóstica.</p>
         </header>
 
         <main>
@@ -220,7 +223,25 @@
             </section>
 
             <!-- Workflow 2: Asistente Inteligente -->
-            <div class="chat-simulation">
+            <section class="workflow-section fade-in-section">
+                 <div class="workflow-header">
+                    <p class="subtitle">Fase 2: Interacción Inteligente</p>
+                    <h2>Un Asistente Experto para Decisiones Críticas</h2>
+                </div>
+                <div class="workflow-content">
+                    <div class="workflow-image"><img src="flujo2.png" alt="Diagrama del asistente de IA en Slack"></div>
+                    <div class="workflow-explanation">
+                        <h3>¿Cómo funciona?</h3>
+                        <ul class="step-list">
+                            <li class="step-item"><div class="step-icon">1</div><div class="step-description"><h4>Consulta del Usuario</h4><p>Un profesional realiza una consulta crítica en lenguaje natural directamente en Slack.</p></div></li>
+                            <li class="step-item"><div class="step-icon">2</div><div class="step-description"><h4>Búsqueda Semántica</h4><p>El Agente de IA busca en los protocolos y manuales los fragmentos más relevantes, entendiendo la intención.</p></div></li>
+                            <li class="step-item"><div class="step-icon">3</div><div class="step-description"><h4>Respuesta Sintetizada</h4><p>Un modelo de lenguaje avanzado resume la información y genera una respuesta precisa y accionable.</p></div></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- DEMO INTERACTIVA CLÍNICA -->
+                <div class="chat-simulation">
                     <h4>Demostración en Vivo: Consulta de Protocolo</h4>
                     <div id="user-q1" class="chat-bubble user-message">Paciente en urgencias con sospecha de sepsis. ¿Cuáles son los pasos iniciales del protocolo "Código Sepsis"?</div>
                     <div id="bot-think1" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
@@ -229,21 +250,6 @@
                     <div id="user-q2" class="chat-bubble user-message">Sí, recuérdame los criterios qSOFA.</div>
                     <div id="bot-think2" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
                     <div id="bot-a2" class="chat-bubble bot-response"><strong>Claro. Criterios qSOFA (Quick SOFA):</strong><ul><li><strong>Frecuencia respiratoria:</strong> ≥ 22/min.</li><li><strong>Alteración del estado mental:</strong> Glasgow < 15.</li><li><strong>Presión arterial sistólica:</strong> ≤ 100 mmHg.</li></ul>Se considera positivo con 2 o más puntos. ¿Algo más del protocolo?</div>
-                </div>
-            </section>
-        </main>
-    </div>
-                
-                <!-- DEMO INTERACTIVA EXTENDIDA -->
-                <div class="chat-simulation">
-                    <h4>Demostración en Vivo</h4>
-                    <div id="user-q1" class="chat-bubble user-message">¿Qué tubo y volumen necesito para un perfil lipídico?</div>
-                    <div id="bot-think1" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <div id="bot-a1" class="chat-bubble bot-response"><strong>Claro, para el Perfil Lipídico necesitas:</strong><ul><li><strong>Tubo:</strong> Tapa Amarilla (Gel Separador).</li><li><strong>Volumen Mínimo:</strong> 4 mL de sangre.</li><li><strong>Dato Adicional:</strong> Requiere ayuno de 12 horas.</li></ul>¿Necesitas consultar otro examen?</div>
-                    
-                    <div id="user-q2" class="chat-bubble user-message">Sí, para el hemograma</div>
-                    <div id="bot-think2" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <div id="bot-a2" class="chat-bubble bot-response"><strong>Por supuesto. Para el Hemograma:</strong><ul><li><strong>Tubo:</strong> Tapa Lila (EDTA).</li><li><strong>Volumen Mínimo:</strong> 2 mL de sangre.</li><li><strong>Dato Adicional:</strong> No requiere ayuno.</li></ul>¿Alguna otra consulta?</div>
                 </div>
             </section>
         </main>
@@ -273,18 +279,18 @@
 
         const chatObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                // Resetea la animación para que pueda volver a ejecutarse si el usuario se desplaza hacia arriba y hacia abajo
+                // Resetea la animación para que pueda volver a ejecutarse
                 Object.values(chatElements).forEach(el => el.classList.remove('visible'));
                 chatElements.t1.style.display = 'flex';
                 chatElements.t2.style.display = 'flex';
                 
                 const steps = [
                     { el: chatElements.q1, delay: 500 },
-                    { el: chatElements.t1, delay: 1500 },
-                    { el: chatElements.a1, delay: 3500, hide: chatElements.t1 },
-                    { el: chatElements.q2, delay: 4500 },
-                    { el: chatElements.t2, delay: 5500 },
-                    { el: chatElements.a2, delay: 7500, hide: chatElements.t2 },
+                    { el: chatElements.t1, delay: 2000 },
+                    { el: chatElements.a1, delay: 4500, hide: chatElements.t1 },
+                    { el: chatElements.q2, delay: 6000 },
+                    { el: chatElements.t2, delay: 7000 },
+                    { el: chatElements.a2, delay: 9000, hide: chatElements.t2 },
                 ];
                 
                 steps.forEach(step => {
@@ -304,4 +310,4 @@
     </script>
 
 </body>
-</html>```
+</html>
