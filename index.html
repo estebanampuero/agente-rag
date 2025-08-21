@@ -16,8 +16,7 @@
             --subtle-text: #6c757d; /* Medium grey for descriptions */
             --accent-blue: #007aff;
             --accent-green: #34c759;
-            --soft-shadow: 0 8px Gist
-30px rgba(0, 0, 0, 0.06);
+            --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
         }
 
         * { box-sizing: border-box; }
@@ -240,7 +239,7 @@
                     </div>
                 </div>
                 
-                <!-- DEMO INTERACTIVA CLÍNICA -->
+                <!-- DEMO INTERACTIVA CON TRES PASOS -->
                 <div class="chat-simulation">
                     <h4>Demostración en Vivo: Consulta de Protocolo</h4>
                     <div id="user-q1" class="chat-bubble user-message">Paciente en urgencias con sospecha de sepsis. ¿Cuáles son los pasos iniciales del protocolo "Código Sepsis"?</div>
@@ -250,6 +249,10 @@
                     <div id="user-q2" class="chat-bubble user-message">Sí, recuérdame los criterios qSOFA.</div>
                     <div id="bot-think2" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
                     <div id="bot-a2" class="chat-bubble bot-response"><strong>Claro. Criterios qSOFA (Quick SOFA):</strong><ul><li><strong>Frecuencia respiratoria:</strong> ≥ 22/min.</li><li><strong>Alteración del estado mental:</strong> Glasgow < 15.</li><li><strong>Presión arterial sistólica:</strong> ≤ 100 mmHg.</li></ul>Se considera positivo con 2 o más puntos. ¿Algo más del protocolo?</div>
+                    
+                    <div id="user-q3" class="chat-bubble user-message">Sí, ¿cuál es la dosis recomendada de Piperacilina-Tazobactam en este caso?</div>
+                    <div id="bot-think3" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div id="bot-a3" class="chat-bubble bot-response"><strong>Según el protocolo local:</strong><p>La dosis de <strong>Piperacilina-Tazobactam</strong> para "Código Sepsis" es de <strong>4.5 g IV cada 6 horas</strong>.</p><p><strong>Importante:</strong> Se debe ajustar la dosis según la función renal del paciente.</p></div>
                 </div>
             </section>
         </main>
@@ -267,22 +270,26 @@
 
         document.querySelectorAll('.fade-in-section').forEach(el => sectionObserver.observe(el));
 
-        // --- Simulación de Chat Animada Extendida ---
+        // --- Simulación de Chat Animada con Tres Pasos ---
         const chatElements = {
             q1: document.getElementById('user-q1'),
             t1: document.getElementById('bot-think1'),
             a1: document.getElementById('bot-a1'),
             q2: document.getElementById('user-q2'),
             t2: document.getElementById('bot-think2'),
-            a2: document.getElementById('bot-a2')
+            a2: document.getElementById('bot-a2'),
+            q3: document.getElementById('user-q3'),
+            t3: document.getElementById('bot-think3'),
+            a3: document.getElementById('bot-a3')
         };
 
         const chatObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                // Resetea la animación para que pueda volver a ejecutarse
+                // Resetea la animación
                 Object.values(chatElements).forEach(el => el.classList.remove('visible'));
                 chatElements.t1.style.display = 'flex';
                 chatElements.t2.style.display = 'flex';
+                chatElements.t3.style.display = 'flex';
                 
                 const steps = [
                     { el: chatElements.q1, delay: 500 },
@@ -291,6 +298,9 @@
                     { el: chatElements.q2, delay: 6000 },
                     { el: chatElements.t2, delay: 7000 },
                     { el: chatElements.a2, delay: 9000, hide: chatElements.t2 },
+                    { el: chatElements.q3, delay: 10500 },
+                    { el: chatElements.t3, delay: 11500 },
+                    { el: chatElements.a3, delay: 13500, hide: chatElements.t3 }
                 ];
                 
                 steps.forEach(step => {
@@ -300,12 +310,12 @@
                     }, step.delay);
                 });
 
-                // Detiene la observación del elemento para que la animación no se dispare repetidamente
+                // Detiene la observación para no repetir la animación
                 chatObserver.unobserve(entries[0].target);
             }
         }, { threshold: 0.6 });
         
-        // Inicia la observación del contenedor de la simulación de chat
+        // Inicia la observación
         chatObserver.observe(document.querySelector('.chat-simulation'));
     </script>
 
