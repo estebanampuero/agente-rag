@@ -8,14 +8,19 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
         :root {
-            --primary-color: #007aff;
-            --background-color: #000000;
-            --text-color: #ffffff;
-            --card-background: #1c1c1e;
-            --border-color: #38383a;
-            --subtle-text: #8d8d93;
-            --gradient: linear-gradient(90deg, #007aff, #34c759);
+            --primary-gradient: linear-gradient(90deg, #007aff, #34c759);
+            --background-color: #f8f9fa; /* Off-white background */
+            --text-color: #212529; /* Dark charcoal text */
+            --card-background: #ffffff; /* Pure white for cards */
+            --border-color: #dee2e6; /* Light grey border */
+            --subtle-text: #6c757d; /* Medium grey for descriptions */
+            --accent-blue: #007aff;
+            --accent-green: #34c759;
+            --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
         }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -23,7 +28,8 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
         .container {
@@ -34,165 +40,152 @@
 
         header {
             text-align: center;
-            padding: 80px 0;
+            padding: 120px 0 80px 0;
         }
 
         header h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 700;
             margin: 0;
-            background: -webkit-linear-gradient(#eee, #333);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-out;
         }
 
         header p {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--subtle-text);
             max-width: 700px;
             margin: 20px auto 0;
+            animation: fadeIn 1s ease-out 0.2s backwards;
         }
 
         .workflow-section {
-            margin-bottom: 80px;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
             background-color: var(--card-background);
-            overflow: hidden;
-        }
-
-        .workflow-header {
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
             padding: 40px;
+            margin-bottom: 60px;
+            box-shadow: var(--soft-shadow);
+        }
+        
+        .workflow-header { margin-bottom: 40px; }
+
+        .workflow-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
         }
 
         .workflow-header h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--text-color);
         }
-
+        
         .workflow-header .subtitle {
-            font-size: 1.2rem;
-            color: var(--primary-color);
+            font-size: 1.1rem;
+            color: var(--accent-blue);
             font-weight: 500;
-        }
-
-        .workflow-content {
-            display: flex;
-            align-items: center;
-            padding: 40px;
-            gap: 40px;
-        }
-        
-        .workflow-content.reverse {
-            flex-direction: row-reverse;
-        }
-        
-        /* Media query for mobile responsiveness */
-        @media (max-width: 768px) {
-            .workflow-content, .workflow-content.reverse {
-                flex-direction: column;
-            }
-            .workflow-image {
-                max-width: 100%;
-            }
-            header h1 {
-                font-size: 3rem;
-            }
-            .workflow-header h2 {
-                font-size: 2rem;
-            }
-        }
-
-        .workflow-image {
-            flex: 1;
-            max-width: 50%;
+            text-transform: uppercase;
         }
 
         .workflow-image img {
             width: 100%;
-            border-radius: 12px;
+            display: block;
+            border-radius: 16px;
             border: 1px solid var(--border-color);
         }
-
-        .workflow-explanation {
-            flex: 1;
-        }
-
-        .workflow-explanation h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .step-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .step-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
+        
+        .step-list { list-style: none; padding: 0; margin-top: 20px; }
+        .step-item { display: flex; align-items: flex-start; margin-bottom: 20px; }
 
         .step-icon {
             flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            background: var(--border-color);
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #e7f1ff, #e6f8ea);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 20px;
             font-weight: 700;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-
-        .step-description h4 {
-            margin: 0 0 5px;
+            color: var(--accent-blue);
             font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .step-description p {
-            margin: 0;
-            color: var(--subtle-text);
-        }
-
-        .summary-section {
-            text-align: center;
-            padding: 60px 0;
-        }
-
-        .summary-section h2 {
-            font-size: 2.8rem;
         }
         
-        .summary-section .highlight {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .workflow-explanation h3 { font-size: 1.8rem; margin-bottom: 20px; }
+        .step-description h4 { margin: 0 0 5px; font-size: 1.15rem; font-weight: 500; }
+        .step-description p { margin: 0; color: var(--subtle-text); font-size: 0.95rem; }
+        
+        /* -- INTERACTIVE CHAT SIMULATION -- */
+        .chat-simulation {
+            background-color: #f0f2f5; /* Light grey chat background */
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+        
+        .chat-simulation h4 {
+            text-align: center; color: var(--subtle-text);
+            margin-top: 0; margin-bottom: 25px; font-weight: 500;
+        }
+        
+        .chat-bubble {
+            max-width: 80%; padding: 12px 18px;
+            border-radius: 20px; margin-bottom: 15px;
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
 
-        .summary-section p {
-            font-size: 1.2rem;
-            color: var(--subtle-text);
-            max-width: 800px;
-            margin: 20px auto;
+        .chat-bubble.visible { opacity: 1; transform: translateY(0); }
+        .user-message {
+            background-color: var(--accent-blue); color: white;
+            border-bottom-right-radius: 4px; margin-left: auto;
         }
         
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
+        .bot-thinking {
+            display: flex; align-items: center; background-color: #e9ecef;
+            color: var(--subtle-text); border-bottom-left-radius: 4px;
+            width: 80px; justify-content: center;
         }
+
+        .dot {
+            width: 8px; height: 8px; margin: 0 3px;
+            background-color: var(--subtle-text); border-radius: 50%;
+            animation: pulse 1.4s infinite ease-in-out both;
+        }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
         
-        footer p {
-            color: var(--subtle-text);
-            margin: 0;
+        .bot-response {
+            background-color: #e9ecef; color: var(--text-color);
+            border-bottom-left-radius: 4px;
+        }
+
+        .bot-response strong { color: var(--accent-green); }
+        .bot-response ul { padding-left: 20px; margin: 10px 0 0 0; color: var(--subtle-text); }
+        
+        /* -- ANIMATIONS -- */
+        .fade-in-section {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.visible { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+
+        /* -- RESPONSIVENESS -- */
+        @media (max-width: 900px) {
+            .workflow-content { grid-template-columns: 1fr; }
+            .workflow-image { grid-row: 1; }
+            header h1 { font-size: 3rem; }
+            .workflow-header h2 { font-size: 2.5rem; }
         }
 
     </style>
@@ -201,124 +194,117 @@
 
     <div class="container">
         <header>
-            <h1>Automatización e Inteligencia Artificial en el Laboratorio</h1>
-            <p>Una iniciativa del Comité de IA del Hospital Puerto Montt para optimizar el acceso a la información y mejorar la eficiencia operativa.</p>
+            <h1>Innovación y Claridad: IA en el Laboratorio Clínico</h1>
+            <p>Una iniciativa del Comité de IA del Hospital Puerto Montt para transformar el acceso a la información y potenciar la precisión diagnóstica.</p>
         </header>
 
         <main>
             <!-- Workflow 1: Indexación de Conocimiento -->
-            <div class="workflow-section">
+            <section class="workflow-section fade-in-section">
                 <div class="workflow-header">
-                    <p class="subtitle">Flujo 1: Alimentando la Base de Conocimiento</p>
-                    <h2>Creación de una Memoria Institucional Inteligente</h2>
+                    <p class="subtitle">Fase 1: Construcción del Conocimiento</p>
+                    <h2>Creando una Memoria Institucional Autónoma</h2>
                 </div>
                 <div class="workflow-content">
-                    <div class="workflow-image">
-                        <!-- VERSIÓN DEFINITIVA DE LA URL -->
-                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/flujo1.png" alt="Diagrama del flujo de indexación de documentos">
-                    </div>
                     <div class="workflow-explanation">
                         <h3>¿Cómo funciona?</h3>
-                        <p>Este proceso automatizado transforma documentos estáticos en una base de datos dinámica e inteligente, lista para ser consultada.</p>
                         <ul class="step-list">
-                            <li class="step-item">
-                                <div class="step-icon">1</div>
-                                <div class="step-description">
-                                    <h4>Detección Automática</h4>
-                                    <p>El sistema monitorea una carpeta en Google Drive. Al crearse un nuevo archivo (como un manual de muestras), el flujo se activa.</p>
-                                </div>
-                            </li>
-                            <li class="step-item">
-                                <div class="step-icon">2</div>
-                                <div class="step-description">
-                                    <h4>Procesamiento y División</h4>
-                                    <p>El contenido del documento se descarga y se divide en fragmentos de texto más pequeños y manejables para su análisis.</p>
-                                </div>
-                            </li>
-                            <li class="step-item">
-                                <div class="step-icon">3</div>
-                                <div class="step-description">
-                                    <h4>Vectorización con IA</h4>
-                                    <p>Mediante un modelo de OpenAI, cada fragmento se convierte en un "embedding" o vector numérico que captura su significado.</p>
-                                </div>
-                            </li>
-                            <li class="step-item">
-                                <div class="step-icon">4</div>
-                                <div class="step-description">
-                                    <h4>Almacenamiento Inteligente</h4>
-                                    <p>Estos vectores se guardan en Pinecone, una base de datos especializada que permite búsquedas semánticas ultra-rápidas.</p>
-                                </div>
-                            </li>
+                            <li class="step-item"><div class="step-icon">1</div><div class="step-description"><h4>Detección Automática</h4><p>El sistema monitorea una carpeta en Google Drive, activándose instantáneamente al detectar un nuevo documento.</p></div></li>
+                            <li class="step-item"><div class="step-icon">2</div><div class="step-description"><h4>Procesamiento y División</h4><p>El contenido se divide en fragmentos de información contextual para un análisis granular y preciso.</p></div></li>
+                            <li class="step-item"><div class="step-icon">3</div><div class="step-description"><h4>Vectorización con IA</h4><p>Cada fragmento se convierte en un "vector" numérico que representa su significado, permitiendo a la IA entender el contexto.</p></div></li>
+                            <li class="step-item"><div class="step-icon">4</div><div class="step-description"><h4>Almacenamiento Inteligente</h4><p>Los vectores se indexan en Pinecone, una base de datos diseñada para búsquedas semánticas a alta velocidad.</p></div></li>
                         </ul>
                     </div>
+                    <div class="workflow-image"><img src="flujo1.png" alt="Diagrama del flujo de indexación de documentos"></div>
                 </div>
-            </div>
+            </section>
 
             <!-- Workflow 2: Asistente Inteligente -->
-            <div class="workflow-section">
+            <section class="workflow-section fade-in-section">
                  <div class="workflow-header">
-                    <p class="subtitle">Flujo 2: El Asistente de Laboratorio</p>
-                    <h2>Acceso Instantáneo a Información Crítica a través de Chat</h2>
+                    <p class="subtitle">Fase 2: Interacción Inteligente</p>
+                    <h2>Un Asistente Experto para Cada Profesional</h2>
                 </div>
-                <div class="workflow-content reverse">
-                    <div class="workflow-image">
-                         <!-- VERSIÓN DEFINITIVA DE LA URL -->
-                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/flujo2.png" alt="Diagrama del asistente de IA en Slack">
-                    </div>
+                <div class="workflow-content">
+                    <div class="workflow-image"><img src="flujo2.png" alt="Diagrama del asistente de IA en Slack"></div>
                     <div class="workflow-explanation">
                         <h3>¿Cómo funciona?</h3>
-                        <p>Este flujo proporciona al personal una interfaz conversacional (vía Slack) para realizar consultas al conocimiento previamente almacenado.</p>
                         <ul class="step-list">
-                            <li class="step-item">
-                                <div class="step-icon">1</div>
-                                <div class="step-description">
-                                    <h4>Consulta del Usuario</h4>
-                                    <p>Un profesional escribe una pregunta en Slack, por ejemplo: "¿Qué tubo se usa para el perfil lipídico?".</p>
-                                </div>
-                            </li>
-                            <li class="step-item">
-                                <div class="step-icon">2</div>
-                                <div class="step-description">
-                                    <h4>Activación del Agente IA</h4>
-                                    <p>El Agente de IA recibe la pregunta. Gracias a su memoria, puede entender el contexto de la conversación.</p>
-                                </div>
-                            </li>
-                            <li class="step-item">
-                                <div class="step-icon">3</div>
-                                <div class="step-description">
-                                    <h4>Búsqueda Semántica</h4>
-                                    <p>El agente busca en Pinecone los fragmentos de información más relevantes, no por palabras clave, sino por significado.</p>
-                                </div>
-                            </li>
-                            <li class="step-item">
-                                <div class="step-icon">4</div>
-                                <div class="step-description">
-                                    <h4>Respuesta Inteligente</h4>
-                                    <p>Un modelo de OpenAI (GPT-4o mini) recibe la información y formula una respuesta clara y concisa, enfocada en los datos críticos.</p>
-                                </div>
-                            </li>
-                             <li class="step-item">
-                                <div class="step-icon">5</div>
-                                <div class="step-description">
-                                    <h4>Entrega de la Respuesta</h4>
-                                    <p>La respuesta generada se envía de vuelta al canal de Slack, resolviendo la duda del usuario en segundos.</p>
-                                </div>
-                            </li>
+                            <li class="step-item"><div class="step-icon">1</div><div class="step-description"><h4>Consulta del Usuario</h4><p>Un profesional escribe una pregunta en Slack, de forma natural y directa.</p></div></li>
+                            <li class="step-item"><div class="step-icon">2</div><div class="step-description"><h4>Búsqueda Semántica</h4><p>El Agente de IA busca los fragmentos más relevantes, entendiendo la intención de la pregunta.</p></div></li>
+                            <li class="step-item"><div class="step-icon">3</div><div class="step-description"><h4>Respuesta Inteligente</h4><p>Un modelo de lenguaje avanzado sintetiza la información y genera una respuesta precisa y clara.</p></div></li>
                         </ul>
                     </div>
                 </div>
-            </div>
-            
-            <section class="summary-section">
-                <h2>El <span class="highlight">Impacto</span> de la Automatización Inteligente</h2>
-                <p>La combinación de estos dos flujos crea un sistema robusto que no solo centraliza el conocimiento, sino que lo hace accesible y accionable. Estamos transformando la manera en que nuestro personal interactúa con la información, reduciendo tiempos de búsqueda, minimizando errores y promoviendo un estándar de calidad superior en nuestros procedimientos.</p>
+                
+                <!-- DEMO INTERACTIVA EXTENDIDA -->
+                <div class="chat-simulation">
+                    <h4>Demostración en Vivo</h4>
+                    <div id="user-q1" class="chat-bubble user-message">¿Qué tubo y volumen necesito para un perfil lipídico?</div>
+                    <div id="bot-think1" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div id="bot-a1" class="chat-bubble bot-response"><strong>Claro, para el Perfil Lipídico necesitas:</strong><ul><li><strong>Tubo:</strong> Tapa Amarilla (Gel Separador).</li><li><strong>Volumen Mínimo:</strong> 4 mL de sangre.</li><li><strong>Dato Adicional:</strong> Requiere ayuno de 12 horas.</li></ul>¿Necesitas consultar otro examen?</div>
+                    
+                    <div id="user-q2" class="chat-bubble user-message">Sí, para el hemograma</div>
+                    <div id="bot-think2" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div id="bot-a2" class="chat-bubble bot-response"><strong>Por supuesto. Para el Hemograma:</strong><ul><li><strong>Tubo:</strong> Tapa Lila (EDTA).</li><li><strong>Volumen Mínimo:</strong> 2 mL de sangre.</li><li><strong>Dato Adicional:</strong> No requiere ayuno.</li></ul>¿Alguna otra consulta?</div>
+                </div>
             </section>
         </main>
-        
-        <footer>
-            <p>Comité de Inteligencia Artificial - Hospital Puerto Montt</p>
-        </footer>
     </div>
 
+    <script>
+        // --- Animación de Scroll para las secciones ---
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-section').forEach(el => sectionObserver.observe(el));
+
+        // --- Simulación de Chat Animada Extendida ---
+        const chatElements = {
+            q1: document.getElementById('user-q1'),
+            t1: document.getElementById('bot-think1'),
+            a1: document.getElementById('bot-a1'),
+            q2: document.getElementById('user-q2'),
+            t2: document.getElementById('bot-think2'),
+            a2: document.getElementById('bot-a2')
+        };
+
+        const chatObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                // Resetea la animación para que pueda volver a ejecutarse si el usuario se desplaza hacia arriba y hacia abajo
+                Object.values(chatElements).forEach(el => el.classList.remove('visible'));
+                chatElements.t1.style.display = 'flex';
+                chatElements.t2.style.display = 'flex';
+                
+                const steps = [
+                    { el: chatElements.q1, delay: 500 },
+                    { el: chatElements.t1, delay: 1500 },
+                    { el: chatElements.a1, delay: 3500, hide: chatElements.t1 },
+                    { el: chatElements.q2, delay: 4500 },
+                    { el: chatElements.t2, delay: 5500 },
+                    { el: chatElements.a2, delay: 7500, hide: chatElements.t2 },
+                ];
+                
+                steps.forEach(step => {
+                    setTimeout(() => {
+                        if (step.hide) step.hide.style.display = 'none';
+                        step.el.classList.add('visible');
+                    }, step.delay);
+                });
+
+                // Detiene la observación del elemento para que la animación no se dispare repetidamente
+                chatObserver.unobserve(entries[0].target);
+            }
+        }, { threshold: 0.6 });
+        
+        // Inicia la observación del contenedor de la simulación de chat
+        chatObserver.observe(document.querySelector('.chat-simulation'));
+    </script>
+
 </body>
-</html>
+</html>```
