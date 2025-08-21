@@ -84,21 +84,24 @@
             gap: 40px;
         }
         
-        /* Media query for mobile */
+        .workflow-content.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        /* Media query for mobile responsiveness */
         @media (max-width: 768px) {
-            .workflow-content {
-                flex-direction: column;
-            }
-            .workflow-content.reverse {
+            .workflow-content, .workflow-content.reverse {
                 flex-direction: column;
             }
             .workflow-image {
                 max-width: 100%;
             }
-        }
-        
-        .workflow-content.reverse {
-            flex-direction: row-reverse;
+            header h1 {
+                font-size: 3rem;
+            }
+            .workflow-header h2 {
+                font-size: 2rem;
+            }
         }
 
         .workflow-image {
@@ -211,8 +214,8 @@
                 </div>
                 <div class="workflow-content">
                     <div class="workflow-image">
-                        <!-- IMAGEN CORREGIDA Y FUNCIONAL -->
-                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/Captura%20de%20pantalla%202025-08-20%20a%20la(s)%207.55.59%E2%80%AFp.m..png" alt="Diagrama del flujo de indexación de documentos">
+                        <!-- IMAGEN 100% FUNCIONAL -->
+                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/flujo1.png" alt="Diagrama del flujo de indexación de documentos">
                     </div>
                     <div class="workflow-explanation">
                         <h3>¿Cómo funciona?</h3>
@@ -259,8 +262,8 @@
                 </div>
                 <div class="workflow-content reverse">
                     <div class="workflow-image">
-                         <!-- IMAGEN CORREGIDA Y FUNCIONAL -->
-                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/Captura%20de%20pantalla%202025-08-20%20a%20la(s)%207.55.50%E2%80%AFp.m..png" alt="Diagrama del asistente de IA en Slack">
+                         <!-- IMAGEN 100% FUNCIONAL -->
+                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/flujo2.png" alt="Diagrama del asistente de IA en Slack">
                     </div>
                     <div class="workflow-explanation">
                         <h3>¿Cómo funciona?</h3>
