@@ -8,14 +8,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
         :root {
-            --brand-blue: #00529B; /* El azul corporativo solicitado */
+            --brand-blue: #00529B;
             --text-light: #f8f9fa;
             --text-dark: #212529;
             --card-background: #ffffff;
             --border-color: #dee2e6;
             --subtle-text-dark: #6c757d;
             --accent-blue: #007aff;
-            --accent-green: #34c759;
+            --accent-green: #2eb67d; /* Un verde más cercano a Slack */
             --soft-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
         }
 
@@ -26,193 +26,181 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--brand-blue);
             color: var(--text-light);
-            margin: 0;
-            padding: 0;
-            line-height: 1.7;
-            overflow-x: hidden;
+            margin: 0; padding: 0;
+            line-height: 1.7; overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
+            max-width: 1200px; margin: 0 auto;
+            padding: 40px 20px; position: relative; z-index: 1;
         }
 
         header {
-            text-align: center;
-            padding: 100px 0 80px 0;
-            min-height: 80vh; /* Para dar espacio al scroll inicial */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            text-align: center; padding: 100px 0 80px 0;
+            min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
         }
         
-        header .logo {
-            max-height: 80px;
-            margin-bottom: 30px;
-        }
-
+        header .logo { max-height: 80px; margin-bottom: 30px; }
         header h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin: 0;
-            color: var(--text-light);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            font-size: 4.5rem; font-weight: 700; margin: 0;
+            color: var(--text-light); text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-
         header p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 700px;
-            margin: 20px auto 0;
+            font-size: 1.3rem; color: rgba(255, 255, 255, 0.8);
+            max-width: 700px; margin: 20px auto 0;
         }
 
         .workflow-section {
             background-color: var(--card-background);
-            color: var(--text-dark); /* Texto oscuro dentro de las tarjetas */
-            border-radius: 24px;
-            padding: 40px;
-            margin-bottom: 60px;
-            box-shadow: var(--soft-shadow);
+            color: var(--text-dark); border-radius: 24px;
+            padding: 40px; margin-bottom: 60px; box-shadow: var(--soft-shadow);
         }
         
         .workflow-header { margin-bottom: 40px; }
-
         .workflow-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 60px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            align-items: center; gap: 60px;
         }
-
         .workflow-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text-dark);
+            font-size: 3rem; font-weight: 700;
+            margin-bottom: 10px; color: var(--text-dark);
         }
-        
         .workflow-header .subtitle {
-            font-size: 1.1rem;
-            color: var(--accent-blue);
-            font-weight: 500;
-            text-transform: uppercase;
+            font-size: 1.1rem; color: var(--accent-blue);
+            font-weight: 500; text-transform: uppercase;
         }
-
         .workflow-image img {
-            width: 100%;
-            display: block;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+            width: 100%; display: block;
+            border-radius: 16px; border: 1px solid var(--border-color);
         }
         
         .step-list { list-style: none; padding: 0; margin-top: 20px; }
         .step-item { display: flex; align-items: flex-start; margin-bottom: 20px; }
-
         .step-icon {
-            flex-shrink: 0;
-            width: 36px;
-            height: 36px;
+            flex-shrink: 0; width: 36px; height: 36px;
             background: linear-gradient(135deg, #e7f1ff, #e6f8ea);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            font-weight: 700;
-            color: var(--accent-blue);
-            font-size: 1.1rem;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; margin-right: 20px;
+            font-weight: 700; color: var(--accent-blue); font-size: 1.1rem;
         }
-        
         .workflow-explanation h3 { font-size: 1.8rem; margin-bottom: 20px; }
         .step-description h4 { margin: 0 0 5px; font-size: 1.15rem; font-weight: 500; }
         .step-description p { margin: 0; color: var(--subtle-text-dark); font-size: 0.95rem; }
         
-        .chat-simulation {
-            background-color: #f0f2f5;
-            border-radius: 16px; padding: 30px;
-            border: 1px solid var(--border-color); margin-top: 40px;
+        /* --- ESTILOS DE LA VENTANA DE SLACK --- */
+        .slack-window {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            margin-top: 40px;
+            box-shadow: var(--soft-shadow);
+            overflow: hidden;
         }
-        
-        .chat-simulation h4 {
-            text-align: center; color: var(--subtle-text-dark);
-            margin-top: 0; margin-bottom: 25px; font-weight: 500;
+        .slack-header {
+            padding: 10px 16px;
+            border-bottom: 1px solid #ddd;
+            font-weight: 900;
+            font-size: 15px;
+            color: #1d1c1d;
         }
-        
-        .chat-bubble {
-            max-width: 85%; padding: 12px 18px;
-            border-radius: 20px; margin-bottom: 15px; opacity: 0;
+        .slack-body {
+            padding: 10px 20px;
+            height: 500px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .slack-message {
+            display: flex;
+            padding: 10px 0;
+            opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-            line-height: 1.5;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
+        .slack-message.visible { opacity: 1; transform: translateY(0); }
+        .slack-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            margin-right: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 14px;
+        }
+        .slack-avatar.user { background-color: var(--accent-blue); }
+        .slack-avatar.bot { background-color: var(--accent-green); }
 
-        .chat-bubble.visible { opacity: 1; transform: translateY(0); }
-        .user-message {
-            background-color: var(--accent-blue); color: white;
-            border-bottom-right-radius: 4px; margin-left: auto;
+        .slack-message-content { line-height: 1.44; }
+        .slack-message-content .username {
+            font-weight: 900;
+            color: #1d1c1d;
+            margin-right: 8px;
         }
+        .slack-message-content p { margin: 0; }
+        .slack-message-content ul {
+            padding-left: 20px; margin: 8px 0 0 0;
+            color: var(--subtle-text-dark);
+        }
+        .slack-message-content li { margin-bottom: 5px; }
         
-        .bot-thinking {
-            display: flex; align-items: center; background-color: #e9ecef;
-            color: var(--subtle-text-dark); border-bottom-left-radius: 4px;
-            width: 80px; justify-content: center;
+        .slack-thinking {
+            display: flex;
+            align-items: center;
+            color: var(--subtle-text-dark);
+            font-size: 13px;
+            padding-left: 50px; /* Aligned with message content */
         }
-
         .dot {
-            width: 8px; height: 8px; margin: 0 3px;
-            background-color: var(--subtle-text-dark); border-radius: 50%;
+            width: 4px; height: 4px; margin: 0 2px;
+            background-color: var(--subtle-text-dark);
+            border-radius: 50%;
             animation: pulse 1.4s infinite ease-in-out both;
         }
         .dot:nth-child(1) { animation-delay: -0.32s; }
         .dot:nth-child(2) { animation-delay: -0.16s; }
-        
-        .bot-response {
-            background-color: #e9ecef; color: var(--text-dark);
-            border-bottom-left-radius: 4px;
-        }
 
-        .bot-response strong { color: var(--accent-blue); }
-        .bot-response ul { padding-left: 20px; margin: 10px 0 0 0; color: var(--subtle-text-dark); }
-        .bot-response li { margin-bottom: 5px; }
+        .slack-input-box {
+            border-top: 1px solid #ddd;
+            padding: 20px;
+        }
+        .slack-input-placeholder {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: var(--subtle-text-dark);
+        }
         
         footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center; padding: 40px 20px;
+            margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
-
         footer p { margin: 5px 0; color: rgba(255, 255, 255, 0.8); }
         footer a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s ease;
+            color: var(--text-light); text-decoration: none;
+            font-weight: 500; transition: opacity 0.3s ease;
         }
         footer a:hover { opacity: 0.8; }
         
-        /* -- ANIMACIÓN DE "APARICIÓN AL HACER SCROLL" -- */
         .scroll-reveal {
-            opacity: 0;
-            transform: translateY(50px);
+            opacity: 0; transform: translateY(50px);
             transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
         
         @keyframes pulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
         @media (max-width: 900px) {
-            .workflow-content { grid-template-columns: 1fr; }
+            .workflow-content { grid-template-columns: 1fr; gap: 40px; }
             .workflow-image { grid-row: 1; }
-            header { min-height: auto; padding: 80px 0; }
-            header h1 { font-size: 3rem; }
-            .workflow-header h2 { font-size: 2.5rem; }
+            header { min-height: auto; padding: 60px 0; }
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.1rem; }
+            .workflow-section { padding: 30px; }
+            .workflow-header h2 { font-size: 2.2rem; }
         }
 
     </style>
@@ -224,7 +212,7 @@
             <a href="https://hospitalpuertomontt.gob.cl/" target="_blank" rel="noopener noreferrer">
                 <img src="https://www.ssdr.gob.cl/wp-content/uploads/2021/08/logo-hpm-2021.png" alt="Logo del Hospital Puerto Montt" class="logo">
             </a>
-            <h1>Innovación y Claridad: IA en el Hospital</h1>
+            <h1>Innovación y Claridad: IA en el Laboratorio Clínico</h1>
             <p>Una iniciativa del Comité de IA del Hospital Puerto Montt para transformar el acceso a la información y potenciar la precisión diagnóstica.</p>
         </header>
 
@@ -265,19 +253,20 @@
                     </div>
                 </div>
                 
-                <div class="chat-simulation">
-                    <h4>Demostración en Vivo: Consulta de Protocolo</h4>
-                    <div id="user-q1" class="chat-bubble user-message">Paciente en urgencias con sospecha de sepsis. ¿Cuáles son los pasos iniciales del protocolo "Código Sepsis"?</div>
-                    <div id="bot-think1" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <div id="bot-a1" class="chat-bubble bot-response"><strong>Protocolo "Código Sepsis" - Primera Hora:</strong><ul><li><strong>1. Medir lactato sérico.</strong> Repetir si > 2 mmol/L.</li><li><strong>2. Obtener hemocultivos</strong> antes de administrar antibióticos.</li><li><strong>3. Administrar antibióticos</strong> de amplio espectro.</li><li><strong>4. Iniciar fluidos</strong> (30 mL/kg de cristaloides) para hipotensión.</li></ul>¿Necesitas los criterios de activación del código?</div>
-                    
-                    <div id="user-q2" class="chat-bubble user-message">Sí, recuérdame los criterios qSOFA.</div>
-                    <div id="bot-think2" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <div id="bot-a2" class="chat-bubble bot-response"><strong>Claro. Criterios qSOFA (Quick SOFA):</strong><ul><li><strong>Frecuencia respiratoria:</strong> ≥ 22/min.</li><li><strong>Alteración del estado mental:</strong> Glasgow < 15.</li><li><strong>Presión arterial sistólica:</strong> ≤ 100 mmHg.</li></ul>Se considera positivo con 2 o más puntos. ¿Algo más del protocolo?</div>
-                    
-                    <div id="user-q3" class="chat-bubble user-message">Sí, ¿cuál es la dosis recomendada de Piperacilina-Tazobactam en este caso?</div>
-                    <div id="bot-think3" class="chat-bubble bot-thinking"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <div id="bot-a3" class="chat-bubble bot-response"><strong>Según el protocolo local:</strong><p>La dosis de <strong>Piperacilina-Tazobactam</strong> para "Código Sepsis" es de <strong>4.5 g IV cada 6 horas</strong>.</p><p><strong>Importante:</strong> Se debe ajustar la dosis según la función renal del paciente.</p></div>
+                <div class="slack-window">
+                    <div class="slack-header">#protocolos-clínicos</div>
+                    <div class="slack-body">
+                        <div id="q1" class="slack-message"><div class="slack-avatar user">ME</div><div class="slack-message-content"><p><span class="username">Médico de Urgencias</span></p><p>Paciente en urgencias con sospecha de sepsis. ¿Cuáles son los pasos iniciales del protocolo "Código Sepsis"?</p></div></div>
+                        <div id="a1-think" class="slack-message slack-thinking"><div class="slack-avatar bot">IA</div><p>Agente IA está escribiendo<span class="dot"></span><span class="dot"></span><span class="dot"></span></p></div>
+                        <div id="a1" class="slack-message"><div class="slack-avatar bot">IA</div><div class="slack-message-content"><p><span class="username">Agente IA</span></p><p><strong>Protocolo "Código Sepsis" - Primera Hora:</strong></p><ul><li><strong>1. Medir lactato sérico.</strong> Repetir si > 2 mmol/L.</li><li><strong>2. Obtener hemocultivos</strong> antes de administrar antibióticos.</li><li><strong>3. Administrar antibióticos</strong> de amplio espectro.</li><li><strong>4. Iniciar fluidos</strong> (30 mL/kg de cristaloides) para hipotensión.</li></ul>¿Necesitas los criterios de activación del código?</div></div>
+                        <div id="q2" class="slack-message"><div class="slack-avatar user">ME</div><div class="slack-message-content"><p><span class="username">Médico de Urgencias</span></p><p>Sí, recuérdame los criterios qSOFA.</p></div></div>
+                        <div id="a2-think" class="slack-message slack-thinking"><div class="slack-avatar bot">IA</div><p>Agente IA está escribiendo<span class="dot"></span><span class="dot"></span><span class="dot"></span></p></div>
+                        <div id="a2" class="slack-message"><div class="slack-avatar bot">IA</div><div class="slack-message-content"><p><span class="username">Agente IA</span></p><p><strong>Claro. Criterios qSOFA (Quick SOFA):</strong></p><ul><li><strong>Frecuencia respiratoria:</strong> ≥ 22/min.</li><li><strong>Alteración del estado mental:</strong> Glasgow < 15.</li><li><strong>Presión arterial sistólica:</strong> ≤ 100 mmHg.</li></ul>Se considera positivo con 2 o más puntos. ¿Algo más del protocolo?</div></div>
+                        <div id="q3" class="slack-message"><div class="slack-avatar user">ME</div><div class="slack-message-content"><p><span class="username">Médico de Urgencias</span></p><p>Sí, ¿cuál es la dosis recomendada de Piperacilina-Tazobactam en este caso?</p></div></div>
+                        <div id="a3-think" class="slack-message slack-thinking"><div class="slack-avatar bot">IA</div><p>Agente IA está escribiendo<span class="dot"></span><span class="dot"></span><span class="dot"></span></p></div>
+                        <div id="a3" class="slack-message"><div class="slack-avatar bot">IA</div><div class="slack-message-content"><p><span class="username">Agente IA</span></p><p><strong>Según el protocolo local:</strong></p><p>La dosis de <strong>Piperacilina-Tazobactam</strong> para "Código Sepsis" es de <strong>4.5 g IV cada 6 horas</strong>.</p><p><strong>Importante:</strong> Se debe ajustar la dosis según la función renal del paciente.</p></div></div>
+                    </div>
+                    <div class="slack-input-box"><div class="slack-input-placeholder">Enviar mensaje a #protocolos-clínicos</div></div>
                 </div>
             </section>
         </main>
@@ -292,37 +281,32 @@
         // --- Animación de "Aparición al Hacer Scroll" ---
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
             });
-        }, { threshold: 0.15 }); // Se activa cuando el 15% del elemento es visible
-
+        }, { threshold: 0.15 });
         document.querySelectorAll('.scroll-reveal').forEach(el => scrollObserver.observe(el));
 
-        // --- Simulación de Chat Animada ---
+        // --- Simulación de Chat Animada Estilo Slack ---
         const chatElements = {
-            q1: document.getElementById('user-q1'), t1: document.getElementById('bot-think1'), a1: document.getElementById('bot-a1'),
-            q2: document.getElementById('user-q2'), t2: document.getElementById('bot-think2'), a2: document.getElementById('bot-a2'),
-            q3: document.getElementById('user-q3'), t3: document.getElementById('bot-think3'), a3: document.getElementById('bot-a3')
+            q1: document.getElementById('q1'), t1: document.getElementById('a1-think'), a1: document.getElementById('a1'),
+            q2: document.getElementById('q2'), t2: document.getElementById('a2-think'), a2: document.getElementById('a2'),
+            q3: document.getElementById('q3'), t3: document.getElementById('a3-think'), a3: document.getElementById('a3')
         };
 
         const chatObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 Object.values(chatElements).forEach(el => el.classList.remove('visible'));
-                chatElements.t1.style.display = 'flex'; chatElements.t2.style.display = 'flex'; chatElements.t3.style.display = 'flex';
-                
                 const steps = [
-                    { el: chatElements.q1, delay: 500 }, { el: chatElements.t1, delay: 2000 },
-                    { el: chatElements.a1, delay: 4500, hide: chatElements.t1 }, { el: chatElements.q2, delay: 6000 },
-                    { el: chatElements.t2, delay: 7000 }, { el: chatElements.a2, delay: 9000, hide: chatElements.t2 },
-                    { el: chatElements.q3, delay: 10500 }, { el: chatElements.t3, delay: 11500 },
-                    { el: chatElements.a3, delay: 13500, hide: chatElements.t3 }
+                    { el: chatElements.q1, delay: 500 }, { el: chatElements.t1, delay: 1500 },
+                    { el: chatElements.a1, delay: 3500, hide: chatElements.t1 }, { el: chatElements.q2, delay: 4500 },
+                    { el: chatElements.t2, delay: 5500 }, { el: chatElements.a2, delay: 7500, hide: chatElements.t2 },
+                    { el: chatElements.q3, delay: 8500 }, { el: chatElements.t3, delay: 9500 },
+                    { el: chatElements.a3, delay: 11500, hide: chatElements.t3 }
                 ];
                 
                 steps.forEach(step => {
                     setTimeout(() => {
-                        if (step.hide) step.hide.style.display = 'none';
+                        if (step.hide) step.hide.classList.remove('visible');
                         step.el.classList.add('visible');
                     }, step.delay);
                 });
@@ -330,7 +314,7 @@
             }
         }, { threshold: 0.6 });
         
-        chatObserver.observe(document.querySelector('.chat-simulation'));
+        chatObserver.observe(document.querySelector('.slack-window'));
     </script>
 
 </body>
