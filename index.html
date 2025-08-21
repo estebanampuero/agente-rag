@@ -84,6 +84,19 @@
             gap: 40px;
         }
         
+        /* Media query for mobile */
+        @media (max-width: 768px) {
+            .workflow-content {
+                flex-direction: column;
+            }
+            .workflow-content.reverse {
+                flex-direction: column;
+            }
+            .workflow-image {
+                max-width: 100%;
+            }
+        }
+        
         .workflow-content.reverse {
             flex-direction: row-reverse;
         }
@@ -132,12 +145,6 @@
             font-weight: 700;
             color: var(--primary-color);
             font-size: 1.2rem;
-        }
-        
-        .step-icon svg {
-             width: 24px;
-             height: 24px;
-             stroke: var(--primary-color);
         }
 
         .step-description h4 {
@@ -204,8 +211,8 @@
                 </div>
                 <div class="workflow-content">
                     <div class="workflow-image">
-                        <!-- IMAGEN CORREGIDA -->
-                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/Captura%20de%20pantalla%202025-08-20%20a%20la(s)%207.55.59%20p.m..png" alt="Diagrama del primer flujo de automatización: Indexación de documentos">
+                        <!-- IMAGEN CORREGIDA Y FUNCIONAL -->
+                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/Captura%20de%20pantalla%202025-08-20%20a%20la(s)%207.55.59%E2%80%AFp.m..png" alt="Diagrama del flujo de indexación de documentos">
                     </div>
                     <div class="workflow-explanation">
                         <h3>¿Cómo funciona?</h3>
@@ -215,7 +222,7 @@
                                 <div class="step-icon">1</div>
                                 <div class="step-description">
                                     <h4>Detección Automática</h4>
-                                    <p>El sistema monitorea una carpeta específica en Google Drive. Al crearse un nuevo archivo (como un manual de toma de muestras), el flujo se activa instantáneamente.</p>
+                                    <p>El sistema monitorea una carpeta en Google Drive. Al crearse un nuevo archivo (como un manual de muestras), el flujo se activa.</p>
                                 </div>
                             </li>
                             <li class="step-item">
@@ -229,7 +236,7 @@
                                 <div class="step-icon">3</div>
                                 <div class="step-description">
                                     <h4>Vectorización con IA</h4>
-                                    <p>Utilizando un modelo de OpenAI, cada fragmento de texto se convierte en un "embedding" o vector numérico. Esta es la clave para que la IA comprenda el significado y contexto del contenido.</p>
+                                    <p>Mediante un modelo de OpenAI, cada fragmento se convierte en un "embedding" o vector numérico que captura su significado.</p>
                                 </div>
                             </li>
                             <li class="step-item">
@@ -252,8 +259,8 @@
                 </div>
                 <div class="workflow-content reverse">
                     <div class="workflow-image">
-                         <!-- IMAGEN CORREGIDA -->
-                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/Captura%20de%20pantalla%202025-08-20%20a%20la(s)%207.55.50%20p.m..png" alt="Diagrama del segundo flujo de automatización: Asistente de IA en Slack">
+                         <!-- IMAGEN CORREGIDA Y FUNCIONAL -->
+                        <img src="https://raw.githubusercontent.com/estebanampuero/agente-rag/main/Captura%20de%20pantalla%202025-08-20%20a%20la(s)%207.55.50%E2%80%AFp.m..png" alt="Diagrama del asistente de IA en Slack">
                     </div>
                     <div class="workflow-explanation">
                         <h3>¿Cómo funciona?</h3>
@@ -263,7 +270,7 @@
                                 <div class="step-icon">1</div>
                                 <div class="step-description">
                                     <h4>Consulta del Usuario</h4>
-                                    <p>Un profesional del laboratorio escribe una pregunta en un canal de Slack, por ejemplo: "¿Qué tubo se usa para el perfil lipídico?".</p>
+                                    <p>Un profesional escribe una pregunta en Slack, por ejemplo: "¿Qué tubo se usa para el perfil lipídico?".</p>
                                 </div>
                             </li>
                             <li class="step-item">
@@ -277,14 +284,14 @@
                                 <div class="step-icon">3</div>
                                 <div class="step-description">
                                     <h4>Búsqueda Semántica</h4>
-                                    <p>El agente convierte la pregunta en un vector y la utiliza para buscar en Pinecone los fragmentos de información más relevantes, no por palabras clave, sino por significado.</p>
+                                    <p>El agente busca en Pinecone los fragmentos de información más relevantes, no por palabras clave, sino por significado.</p>
                                 </div>
                             </li>
                             <li class="step-item">
                                 <div class="step-icon">4</div>
                                 <div class="step-description">
                                     <h4>Respuesta Inteligente</h4>
-                                    <p>El modelo de lenguaje de OpenAI (GPT-4o mini) recibe la información relevante y formula una respuesta clara y concisa, enfocada en los datos críticos: tipo de tubo, volumen y consideraciones adicionales.</p>
+                                    <p>Un modelo de OpenAI (GPT-4o mini) recibe la información y formula una respuesta clara y concisa, enfocada en los datos críticos.</p>
                                 </div>
                             </li>
                              <li class="step-item">
