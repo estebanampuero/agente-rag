@@ -3,150 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presentación Interactiva de Flujos de n8n</title>
+    <title>Comité de IA Hospital Puerto Montt - Automatización Inteligente</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+        :root {
+            --primary-color: #007aff;
+            --background-color: #000000;
+            --text-color: #ffffff;
+            --card-background: #1c1c1e;
+            --border-color: #38383a;
+            --subtle-text: #8d8d93;
+            --gradient: linear-gradient(90deg, #007aff, #34c759);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
             margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 0;
+            line-height: 1.6;
         }
-        h1, h2 {
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
             text-align: center;
-            color: #ffffff;
-            border-bottom: 2px solid #555;
-            padding-bottom: 10px;
-            width: 90%;
-            max-width: 1100px;
+            padding: 80px 0;
         }
-        .workflow-container {
-            position: relative; /* Clave para posicionar las zonas interactivas */
-            width: 90%;
-            max-width: 1100px;
-            margin: 20px 0;
-            border-radius: 8px;
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 0;
+            background: -webkit-linear-gradient(#eee, #333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--subtle-text);
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        .workflow-section {
+            margin-bottom: 80px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background-color: var(--card-background);
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
-        .workflow-container img {
-            display: block;
+
+        .workflow-header {
+            padding: 40px;
+        }
+
+        .workflow-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        .workflow-header .subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .workflow-content {
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            gap: 40px;
+        }
+        
+        .workflow-content.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .workflow-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .workflow-image img {
             width: 100%;
-            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
         }
-        .node-area {
-            position: absolute;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.2s, box-shadow 0.2s;
-        }
-        .node-area:hover {
-            background-color: rgba(0, 255, 255, 0.2);
-            box-shadow: inset 0 0 0 2px cyan;
-        }
-        #tooltip {
-            position: fixed;
-            display: none;
-            padding: 15px;
-            background: rgba(10, 10, 10, 0.95);
-            border: 1px solid #00ffff;
-            border-radius: 8px;
-            color: #e0e0e0;
-            z-index: 1000;
-            max-width: 350px;
-            pointer-events: none;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-        }
-        #tooltip h3 { margin: 0 0 10px 0; color: #00ffff; font-size: 1.1em; }
-        #tooltip p { margin: 0; font-size: 0.95em; }
 
-        /* --- Coordenadas de Zonas Interactivas --- */
-        /* Formato: top, left, width, height en porcentajes */
+        .workflow-explanation {
+            flex: 1;
+        }
 
-        /* Workflow 1: Chatbot */
-        #chatbot-slack-trigger { top: 38%; left: 4%; width: 14%; height: 26%; }
-        #chatbot-ai-agent { top: 38%; left: 30%; width: 23%; height: 26%; }
-        #chatbot-send-message { top: 38%; left: 78%; width: 17%; height: 26%; }
-        #chatbot-openai-model { top: 73%; left: 16%; width: 18%; height: 20%; }
-        #chatbot-simple-memory { top: 73%; left: 38%; width: 18%; height: 20%; }
-        #chatbot-pinecone-tool { top: 60%; left: 58%; width: 24%; height: 20%; }
-        #chatbot-embeddings-tool { top: 83%; left: 74%; width: 18%; height: 16%; }
+        .workflow-explanation h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
 
-        /* Workflow 2: Carga de Archivos */
-        #ingest-drive-trigger { top: 38%; left: 4%; width: 17%; height: 28%; }
-        #ingest-drive-download { top: 38%; left: 24%; width: 17%; height: 28%; }
-        #ingest-pinecone { top: 38%; left: 45%; width: 23%; height: 28%; }
-        #ingest-embeddings { top: 68%; left: 35%; width: 18%; height: 24%; }
-        #ingest-data-loader { top: 68%; left: 58%; width: 18%; height: 24%; }
-        #ingest-text-splitter { top: 82%; left: 74%; width: 20%; height: 17%; }
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .step-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .step-icon svg {
+             width: 24px;
+             height: 24px;
+             stroke: var(--primary-color);
+        }
+
+        .step-description h4 {
+            margin: 0 0 5px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .step-description p {
+            margin: 0;
+            color: var(--subtle-text);
+        }
+
+        .summary-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .summary-section h2 {
+            font-size: 2.8rem;
+        }
+        
+        .summary-section .highlight {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .summary-section p {
+            font-size: 1.2rem;
+            color: var(--subtle-text);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+        
+        footer p {
+            color: var(--subtle-text);
+            margin: 0;
+        }
 
     </style>
 </head>
 <body>
 
-    <h1>Presentación Interactiva de Flujos de n8n</h1>
-    <div id="tooltip">
-        <h3 id="tooltip-title"></h3>
-        <p id="tooltip-info"></p>
-    </div>
+    <div class="container">
+        <header>
+            <h1>Automatización e Inteligencia Artificial en el Laboratorio</h1>
+            <p>Una iniciativa del Comité de IA del Hospital Puerto Montt para optimizar el acceso a la información y mejorar la eficiencia operativa.</p>
+        </header>
 
-    <!-- ===== AUTOMATIZACIÓN 1: AGENTE DE CHAT INTELIGENTE ===== -->
-    <h2>Automatización 1: Agente de Chat Inteligente con Slack</h2>
-    <div class="workflow-container">
-        <img src="URL_DE_TU_IMAGEN_CHATBOT.png" alt="Flujo de trabajo del Chatbot">
+        <main>
+            <!-- Workflow 1: Indexación de Conocimiento -->
+            <div class="workflow-section">
+                <div class="workflow-header">
+                    <p class="subtitle">Flujo 1: Alimentando la Base de Conocimiento</p>
+                    <h2>Creación de una Memoria Institucional Inteligente</h2>
+                </div>
+                <div class="workflow-content">
+                    <div class="workflow-image">
+                        <img src="https://i.imgur.com/uRkL1V8.png" alt="Diagrama del primer flujo de automatización">
+                    </div>
+                    <div class="workflow-explanation">
+                        <h3>¿Cómo funciona?</h3>
+                        <p>Este proceso automatizado transforma documentos estáticos en una base de datos dinámica e inteligente, lista para ser consultada.</p>
+                        <ul class="step-list">
+                            <li class="step-item">
+                                <div class="step-icon">1</div>
+                                <div class="step-description">
+                                    <h4>Detección Automática</h4>
+                                    <p>El sistema monitorea una carpeta específica en Google Drive. Al crearse un nuevo archivo (como un manual de toma de muestras), el flujo se activa instantáneamente.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-icon">2</div>
+                                <div class="step-description">
+                                    <h4>Procesamiento y División</h4>
+                                    <p>El contenido del documento se descarga y se divide en fragmentos de texto más pequeños y manejables para su análisis.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-icon">3</div>
+                                <div class="step-description">
+                                    <h4>Vectorización con IA</h4>
+                                    <p>Utilizando un modelo de OpenAI, cada fragmento de texto se convierte en un "embedding" o vector numérico. Esta es la clave para que la IA comprenda el significado y contexto del contenido.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-icon">4</div>
+                                <div class="step-description">
+                                    <h4>Almacenamiento Inteligente</h4>
+                                    <p>Estos vectores se guardan en Pinecone, una base de datos especializada que permite búsquedas semánticas ultra-rápidas.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow 2: Asistente Inteligente -->
+            <div class="workflow-section">
+                 <div class="workflow-header">
+                    <p class="subtitle">Flujo 2: El Asistente de Laboratorio</p>
+                    <h2>Acceso Instantáneo a Información Crítica a través de Chat</h2>
+                </div>
+                <div class="workflow-content reverse">
+                    <div class="workflow-image">
+                        <img src="https://i.imgur.com/6EaWdC0.png" alt="Diagrama del segundo flujo de automatización">
+                    </div>
+                    <div class="workflow-explanation">
+                        <h3>¿Cómo funciona?</h3>
+                        <p>Este flujo proporciona al personal una interfaz conversacional (vía Slack) para realizar consultas al conocimiento previamente almacenado.</p>
+                        <ul class="step-list">
+                            <li class="step-item">
+                                <div class="step-icon">1</div>
+                                <div class="step-description">
+                                    <h4>Consulta del Usuario</h4>
+                                    <p>Un profesional del laboratorio escribe una pregunta en un canal de Slack, por ejemplo: "¿Qué tubo se usa para el perfil lipídico?".</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-icon">2</div>
+                                <div class="step-description">
+                                    <h4>Activación del Agente IA</h4>
+                                    <p>El Agente de IA recibe la pregunta. Gracias a su memoria, puede entender el contexto de la conversación.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-icon">3</div>
+                                <div class="step-description">
+                                    <h4>Búsqueda Semántica</h4>
+                                    <p>El agente convierte la pregunta en un vector y la utiliza para buscar en Pinecone los fragmentos de información más relevantes, no por palabras clave, sino por significado.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-icon">4</div>
+                                <div class="step-description">
+                                    <h4>Respuesta Inteligente</h4>
+                                    <p>El modelo de lenguaje de OpenAI (GPT-4o mini) recibe la información relevante y formula una respuesta clara y concisa, enfocada en los datos críticos: tipo de tubo, volumen y consideraciones adicionales.</p>
+                                </div>
+                            </li>
+                             <li class="step-item">
+                                <div class="step-icon">5</div>
+                                <div class="step-description">
+                                    <h4>Entrega de la Respuesta</h4>
+                                    <p>La respuesta generada se envía de vuelta al canal de Slack, resolviendo la duda del usuario en segundos.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <section class="summary-section">
+                <h2>El <span class="highlight">Impacto</span> de la Automatización Inteligente</h2>
+                <p>La combinación de estos dos flujos crea un sistema robusto que no solo centraliza el conocimiento, sino que lo hace accesible y accionable. Estamos transformando la manera en que nuestro personal interactúa con la información, reduciendo tiempos de búsqueda, minimizando errores y promoviendo un estándar de calidad superior en nuestros procedimientos.</p>
+            </section>
+        </main>
         
-        <!-- Zonas Interactivas (Divs invisibles sobre la imagen) -->
-        <div class="node-area" id="chatbot-slack-trigger" data-title="Slack Trigger" data-info="Este es el punto de partida. Se activa instantáneamente cada vez que un usuario envía un mensaje directo al bot en Slack. Captura el texto del mensaje y la información del usuario para iniciar la conversación."></div>
-        <div class="node-area" id="chatbot-ai-agent" data-title="AI Agent" data-info="Es el cerebro del bot. Recibe el texto del usuario y orquesta la respuesta. Utiliza las 'herramientas' y el 'modelo' conectados a él para decidir la mejor acción."></div>
-        <div class="node-area" id="chatbot-openai-model" data-title="OpenAI Chat Model" data-info="Proporciona el modelo de lenguaje (como GPT-4o). El 'AI Agent' le envía el prompt y este nodo devuelve la respuesta en lenguaje natural. Es el responsable del razonamiento."></div>
-        <div class="node-area" id="chatbot-simple-memory" data-title="Simple Memory" data-info="Almacena el historial de la conversación. Permite que el bot recuerde los mensajes anteriores para mantener el contexto."></div>
-        <div class="node-area" id="chatbot-send-message" data-title="Send a message" data-info="Toma la respuesta final generada por el 'AI Agent' y la publica de vuelta en el chat de Slack, completando el ciclo de la conversación."></div>
-        <div class="node-area" id="chatbot-pinecone-tool" data-title="Pinecone Vector Store (Herramienta)" data-info="Funciona como una 'herramienta' de búsqueda para el agente. Cuando necesita información específica para responder, consulta esta base de datos para encontrar los documentos más relevantes a la pregunta."></div>
-        <div class="node-area" id="chatbot-embeddings-tool" data-title="Embeddings OpenAI (Herramienta)" data-info="Convierte la pregunta del usuario en un vector numérico. Este vector es usado por Pinecone para buscar vectores similares en la base de datos, encontrando así la información más relevante."></div>
+        <footer>
+            <p>Comité de Inteligencia Artificial - Hospital Puerto Montt</p>
+        </footer>
     </div>
-
-    <!-- ===== AUTOMATIZACIÓN 2: CARGA Y PROCESAMIENTO DE ARCHIVOS ===== -->
-    <h2>Automatización 2: Carga y Procesamiento de Archivos para la Base de Conocimiento</h2>
-    <div class="workflow-container">
-        <img src="URL_DE_TU_IMAGEN_CARGA_DE_ARCHIVOS.png" alt="Flujo de trabajo de carga de archivos">
-        
-        <!-- Zonas Interactivas -->
-        <div class="node-area" id="ingest-drive-trigger" data-title="Google Drive Trigger" data-info="Este flujo se inicia automáticamente cada vez que se sube un nuevo archivo a una carpeta específica en Google Drive. Es el disparador que alimenta la base de conocimiento del bot."></div>
-        <div class="node-area" id="ingest-drive-download" data-title="Google Drive (Download)" data-info="Una vez que el trigger detecta un nuevo archivo, este nodo se encarga de descargarlo para que su contenido pueda ser procesado."></div>
-        <div class="node-area" id="ingest-pinecone" data-title="Pinecone Vector Store" data-info="Este es el destino final. Recibe los fragmentos de texto ya convertidos en vectores ('embeddings') y los almacena en Pinecone, listos para ser consultados por el bot."></div>
-        <div class="node-area" id="ingest-embeddings" data-title="Embeddings OpenAI" data-info="Toma los fragmentos de texto (chunks) y los convierte en vectores numéricos ('embeddings'). Cada vector representa el significado semántico del texto."></div>
-        <div class="node-area" id="ingest-data-loader" data-title="Default Data Loader" data-info="Este nodo toma el archivo descargado (PDF, .txt, etc.) y extrae todo el texto plano de su interior, preparándolo para ser dividido."></div>
-        <div class="node-area" id="ingest-text-splitter" data-title="Recursive Character Text Splitter" data-info="Divide el texto extraído en fragmentos más pequeños y manejables (chunks) de manera inteligente, tratando de mantener el contexto."></div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tooltips = document.querySelectorAll('.node-area');
-            const tooltipElement = document.getElementById('tooltip');
-            const tooltipTitle = document.getElementById('tooltip-title');
-            const tooltipInfo = document.getElementById('tooltip-info');
-
-            tooltips.forEach(node => {
-                node.addEventListener('mouseover', () => {
-                    tooltipTitle.innerText = node.getAttribute('data-title');
-                    tooltipInfo.innerText = node.getAttribute('data-info');
-                    tooltipElement.style.display = 'block';
-                });
-
-                node.addEventListener('mousemove', (e) => {
-                    tooltipElement.style.left = e.pageX + 15 + 'px';
-                    tooltipElement.style.top = e.pageY + 15 + 'px';
-                });
-
-                node.addEventListener('mouseout', () => {
-                    tooltipElement.style.display = 'none';
-                });
-            });
-        });
-    </script>
 
 </body>
 </html>
